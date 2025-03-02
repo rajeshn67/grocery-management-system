@@ -1,6 +1,4 @@
-
-    // Initial stock for each item (set to 10)
-    let stock = {
+let stock = {
         'peanut Butter': 10,
         'Honey': 10,
         'Cadbury': 10,
@@ -12,21 +10,21 @@
         'Chips': 10
     };
 
-    // Cart data
+  
     let cart = {
         items: [],
         totalItems: 0,
         totalPrice: 0
     };
 
-    // Function to add items to cart
+   
     function addToCart(itemName, itemPrice) {
-        // Check stock level
+       
         if (stock[itemName] > 0) {
-            // Deduct from stock
+          
             stock[itemName]--;
 
-            // Check if item already exists in cart
+            
             const existingItem = cart.items.find(item => item.name === itemName);
             if (existingItem) {
                 existingItem.quantity++;
@@ -34,14 +32,14 @@
                 cart.items.push({ name: itemName, price: itemPrice, quantity: 1 });
             }
 
-            // Update total items and price
+            
             cart.totalItems++;
             cart.totalPrice += itemPrice;
 
             updateCartDisplay();
             updateStockDisplay(itemName);
 
-            // Check if stock is below 4 and alert
+            
             if (stock[itemName] < 4) {
                 alert(`${itemName} stock is running low. Consider purchasing more soon.`);
             }
@@ -50,10 +48,10 @@
         }
     }
 
-    // Function to update cart display
+
     function updateCartDisplay() {
         const cartItemsElement = document.getElementById('cart-items');
-        cartItemsElement.innerHTML = ''; // Clear the cart list
+        cartItemsElement.innerHTML = '';
 
         cart.items.forEach(item => {
             const listItem = document.createElement('li');
@@ -65,7 +63,7 @@
         document.getElementById('total-price').textContent = cart.totalPrice;
     }
 
-    // Function to update stock display (optional, you can implement in the UI)
+   
     function updateStockDisplay(itemName) {
         const productCards = document.querySelectorAll('.product-card');
         productCards.forEach(card => {
@@ -84,11 +82,11 @@
         });
     }
 
-    // Function to handle checkout
+   
     function checkout() {
         if (cart.totalItems > 0) {
             alert(`Thank you for your purchase! Total: ₹${cart.totalPrice}`);
-            // Clear cart after checkout
+          
             cart.items = [];
             cart.totalItems = 0;
             cart.totalPrice = 0;
